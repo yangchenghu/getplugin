@@ -1,0 +1,261 @@
+:root {
+  color-scheme: light;
+  --ink: #1c2b25;
+  --muted: #718078;
+  --line: #dcded8;
+  --paper: #fbfaf5;
+  --white: #ffffff;
+  --green: #164d3a;
+  --green-light: #e5f0eb;
+  --red: #9b4137;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  width: 350px;
+}
+
+body {
+  color: var(--ink);
+  background: var(--paper);
+  font-family: "Avenir Next", Avenir, "PingFang SC", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+select {
+  font: inherit;
+}
+
+.popup {
+  padding: 18px;
+}
+
+.toolbar,
+.brand,
+.save-button {
+  display: flex;
+  align-items: center;
+}
+
+.toolbar {
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.brand {
+  gap: 8px;
+  font-family: "Songti SC", STSong, serif;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.brand img {
+  width: 27px;
+  height: 27px;
+  border-radius: 8px;
+}
+
+.icon-button {
+  position: relative;
+  display: grid;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: #53645c;
+  background: var(--white);
+  cursor: pointer;
+  transition: border-color 150ms ease, color 150ms ease;
+}
+
+.icon-button:hover {
+  border-color: #92a49a;
+  color: var(--green);
+}
+
+.icon-button svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.6;
+}
+
+.settings-dot {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 8px;
+  height: 8px;
+  border: 2px solid var(--paper);
+  border-radius: 50%;
+  background: #c48234;
+}
+
+.settings-dot.is-configured {
+  display: none;
+}
+
+.page-preview {
+  min-height: 88px;
+  padding: 15px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--white);
+}
+
+.page-host {
+  display: block;
+  margin-bottom: 7px;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: .04em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.page-preview h1 {
+  display: -webkit-box;
+  margin: 0;
+  overflow: hidden;
+  font-family: "Songti SC", STSong, serif;
+  font-size: 16px;
+  line-height: 1.45;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.field {
+  margin-top: 17px;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.field p {
+  margin: 6px 2px 0;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.select-wrap {
+  position: relative;
+}
+
+.select-wrap select {
+  width: 100%;
+  height: 43px;
+  padding: 0 38px 0 12px;
+  appearance: none;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  outline: none;
+  color: var(--ink);
+  background: var(--white);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.select-wrap select:focus {
+  border-color: #7d9b8c;
+  box-shadow: 0 0 0 3px rgb(22 77 58 / 8%);
+}
+
+.select-wrap select:disabled {
+  color: #949b97;
+  cursor: wait;
+}
+
+.select-wrap svg {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: var(--muted);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.feedback {
+  margin: 12px 0 0;
+  padding: 9px 11px;
+  border-radius: 9px;
+  color: #21513d;
+  background: var(--green-light);
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+.feedback[data-tone="error"] {
+  color: var(--red);
+  background: #faece9;
+}
+
+.feedback[data-tone="info"] {
+  color: #775322;
+  background: #fbf1d9;
+}
+
+.save-button {
+  width: 100%;
+  height: 46px;
+  margin-top: 14px;
+  justify-content: center;
+  gap: 8px;
+  border: 0;
+  border-radius: 12px;
+  color: var(--white);
+  background: var(--green);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgb(22 77 58 / 18%);
+  transition: background 150ms ease, transform 150ms ease;
+}
+
+.save-button:hover:not(:disabled) {
+  background: #0f5d41;
+  transform: translateY(-1px);
+}
+
+.save-button:disabled {
+  opacity: .48;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.save-button svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}

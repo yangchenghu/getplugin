@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Get笔记设置</title>
+    <link rel="stylesheet" href="./options.css" />
+  </head>
+  <body>
+    <main class="settings-card">
+      <header>
+        <img src="../assets/icon-48.png" alt="" />
+        <div>
+          <span class="eyebrow">CHROME EXTENSION</span>
+          <h1>Get笔记设置</h1>
+        </div>
+      </header>
+
+      <p class="intro">在 Get笔记开放平台创建应用后，将凭据填写在这里。数据仅保存在本机 Chrome 中。</p>
+
+      <form id="settingsForm">
+        <label for="apiKey">API Key</label>
+        <input id="apiKey" type="password" placeholder="gk_live_..." autocomplete="off" spellcheck="false" required />
+
+        <label for="clientId">Client ID</label>
+        <input id="clientId" type="text" placeholder="cli_..." autocomplete="off" spellcheck="false" required />
+        <p class="hint">Get笔记官方接口要求 API Key 和 Client ID 同时提供。</p>
+
+        <p id="feedback" class="feedback" role="status" aria-live="polite" hidden></p>
+
+        <div class="actions">
+          <a href="https://www.biji.com/openapi?tab=keys" target="_blank" rel="noreferrer">前往开放平台</a>
+          <button id="saveButton" type="submit">保存设置</button>
+        </div>
+      </form>
+    </main>
+
+    <script type="module" src="./options.js"></script>
+  </body>
+</html>

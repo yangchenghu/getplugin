@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "保存到 Get笔记",
+  "description": "一键将当前网页保存到 Get笔记，并可选归档到指定知识库。",
+  "version": "0.1.0",
+  "icons": {
+    "16": "assets/icon-16.png",
+    "32": "assets/icon-32.png",
+    "48": "assets/icon-48.png",
+    "128": "assets/icon-128.png"
+  },
+  "permissions": ["activeTab", "storage"],
+  "host_permissions": ["https://openapi.biji.com/*"],
+  "background": {
+    "service_worker": "src/background.js",
+    "type": "module"
+  },
+  "options_page": "src/options.html",
+  "action": {
+    "default_title": "保存到 Get笔记",
+    "default_popup": "src/popup.html",
+    "default_icon": {
+      "16": "assets/icon-16.png",
+      "32": "assets/icon-32.png"
+    }
+  }
+}

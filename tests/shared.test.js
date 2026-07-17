@@ -6,6 +6,7 @@ import {
   isSavableUrl,
   normalizeCredentials,
   parseApiError,
+  parseCopiedCredentials,
   parseTopics,
   validateCredentials
 } from "../src/shared.js";
@@ -14,6 +15,30 @@ test("normalizeCredentials trims values without exposing or rewriting them", () 
   assert.deepEqual(normalizeCredentials({ apiKey: "  gk_live_demo  ", clientId: " cli_demo " }), {
     apiKey: "gk_live_demo",
     clientId: "cli_demo"
+  });
+});
+
+test("parseCopiedCredentials reads the complete one-click copy format", () => {
+  const copiedText = [
+    "得到大脑 API Key: Chrome",
+    "API Key: gk_live_example.not-a-real-secret",
+    "Client ID: cli_example_not_real"
+  ].join("\r\n");
+
+  assert.deepEqual(parseCopiedCredentials(copiedText), {
+    apiKey: "gk_live_example.not-a-real-secret",
+    clientId: "cli_example_not_real"
+  });
+});
+
+test("parseCopiedCredentials ignores the product heading and supports Chinese colons", () => {
+  assert.deepEqual(parseCopiedCredentials("得到大脑 API Key: Chrome\nAPI Key： gk_demo\nClient ID： cli_demo"), {
+    apiKey: "gk_demo",
+    clientId: "cli_demo"
+  });
+  assert.deepEqual(parseCopiedCredentials("得到大脑 API Key: Chrome"), {
+    apiKey: "",
+    clientId: ""
   });
 });
 

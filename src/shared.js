@@ -18,6 +18,19 @@ export function normalizeCredentials(credentials = {}) {
   };
 }
 
+export function parseCopiedCredentials(value = "") {
+  const lines = String(value).replace(/\r\n?/g, "\n").split("\n");
+  const readValue = (label) => {
+    const pattern = new RegExp(`^\\s*${label}\\s*[:：]\\s*(.+?)\\s*$`, "i");
+    return lines.map((line) => line.match(pattern)?.[1]).find(Boolean) ?? "";
+  };
+
+  return normalizeCredentials({
+    apiKey: readValue("API\\s*Key"),
+    clientId: readValue("Client\\s*ID")
+  });
+}
+
 export function validateCredentials(credentials = {}) {
   const normalized = normalizeCredentials(credentials);
 

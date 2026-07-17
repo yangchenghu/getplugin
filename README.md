@@ -15,6 +15,10 @@
 
 ## 安装
 
+Get笔记也提供官方浏览器插件，可直接前往 [Get笔记官方插件下载页](https://www.biji.com/extension) 获取。
+
+如果要安装本项目版本，请按以下步骤在 Chrome 中本地加载：
+
 1. 打开 Chrome，进入 `chrome://extensions/`。
 2. 开启右上角的「开发者模式」。
 3. 点击「加载已解压的扩展程序」。
@@ -23,11 +27,14 @@
 
 ## 配置与使用
 
-1. 在 [Get笔记开放平台](https://www.biji.com/openapi?tab=keys) 创建应用，保存 `API Key` 和 `Client ID`。
-2. 应用至少需要 `note.content.write` 和 `topic.read` 权限；要归档到知识库时，还需要 `note.topic.write`。
-3. 打开扩展，点击右上角设置图标，填入两项凭据。
-4. 选择一个知识库，或保持「全部笔记」。
-5. 点击「保存到 Get笔记」。
+1. 打开 [Get笔记开放平台的应用列表](https://www.biji.com/openapi?tab=clients)，选择「**Get笔记浏览器插件**」。
+2. 点击「生成Key」，然后点击一键复制。复制内容中会包含 `API Key` 和 `Client ID`，请勿分享给他人或提交到代码仓库。
+3. 打开扩展，点击右上角设置图标，将复制的完整内容粘贴到「一键复制内容」输入框。设置页会自动解析并填入两项凭据，也可以点击「解析并填入」。
+4. 确认解析结果，点击「保存设置」。凭据仅保存在本机的 `chrome.storage.local` 中。
+5. 返回扩展，选择一个知识库，或保持「全部笔记」。
+6. 点击「保存到 Get笔记」。
+
+也可以跳过一键导入，在设置页中分别手动填写 `API Key` 和 `Client ID`。
 
 开发或排查接口问题时，可快速查看 [Get笔记 OpenAPI 官方文档](https://www.biji.com/openapi?tab=docs)，了解 API 接口、请求参数和返回数据。
 

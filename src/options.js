@@ -1,5 +1,9 @@
+import { parseCopiedCredentials, validateCredentials } from "./shared.js";
+
 const elements = {
   form: document.querySelector("#settingsForm"),
+  credentialsPaste: document.querySelector("#credentialsPaste"),
+  parseButton: document.querySelector("#parseButton"),
   apiKey: document.querySelector("#apiKey"),
   clientId: document.querySelector("#clientId"),
   feedback: document.querySelector("#feedback"),
@@ -22,6 +26,26 @@ function showFeedback(message, tone = "success") {
   elements.feedback.textContent = message;
   elements.feedback.dataset.tone = tone;
   elements.feedback.hidden = false;
+}
+
+function parseAndFillCredentials(value) {
+  const validation = validateCredentials(parseCopiedCredentials(value));
+
+  if (!validation.valid) {
+    showFeedback(`解析失败：${validation.message}。请粘贴“一键复制”的完整内容。`, "error");
+    return false;
+  }
+
+  elements.apiKey.value = validation.credentials.apiKey;
+  elements.clientId.value = validation.credentials.clientId;
+  elements.credentialsPaste.value = "";
+  showFeedback("已解析并填入凭据，请确认后点击“保存设置”。");
+  return true;
+}
+
+function handleCredentialPaste(event) {
+  const value = event.clipboardData?.getData("text/plain") ?? "";
+  if (parseAndFillCredentials(value)) event.preventDefault();
 }
 
 async function loadSettings() {
@@ -61,4 +85,6 @@ async function saveSettings(event) {
 }
 
 elements.form.addEventListener("submit", saveSettings);
+elements.credentialsPaste.addEventListener("paste", handleCredentialPaste);
+elements.parseButton.addEventListener("click", () => parseAndFillCredentials(elements.credentialsPaste.value));
 await loadSettings();
